@@ -28,11 +28,23 @@ def numOfAmandas(csvReader):
   # Iterate over dataset
   for row in csvReader:
     # If the name field contains 'Amanda' then inc counter
-    if row[7].find("Amanda") > -1:
+    if row[7].lower().find("amanda") > -1:
       nAmandas += 1
 
   # Return results
   return nAmandas
+
+def avgTransation(csvReader):
+  total = 0
+  counter = 0
+  # Iterate over dataset
+  for row in csvReader:
+    if row[2].isdigit():
+      total += float(row[2])
+      counter += 1
+
+  return total/counter
+
 
 file = open(filePath, 'rb')
 # Open the csv file and get a csv reader object
@@ -48,4 +60,6 @@ print "Step 2: Number of Amandas"
 print "There are", numOfAmandas(dataReader), "Amandas in this dataset"
 file.seek(0) # Seek back to start of file
 
-
+# STEP THREE: Average Transaction Amount
+print "Setp 3: Average Transaction Amount"
+print "Avg:", avgTransation(dataReader)
