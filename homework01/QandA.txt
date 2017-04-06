@@ -1,0 +1,24 @@
+1. In order to print the data sorted by product, you likely had to load all the data in memory. Imagine the csv file is over 1GB in size. What is the problem?
+
+    This is very taxing on a user's RAM, it is a lot of unnecessary read/write on the disk, and can become a performance issue.
+
+2. What was the problem with counting the number of Amandas?
+
+    Spelling can be different (more of an issue with other names), and not all of the entries had the same case-sensitivity. I didn't
+    realize this until I went through to manually count the number of Amandas and noticed some were all lowercase and others had various
+    capitalization. For a small file this was easy to catch, any significant file size would have been much more challenging.
+
+3. What was the problem calculating the average transaction amount? Although the data appears numeric, what did your program have to do to perform the necessary computation?
+
+    The price is read in as a string, so it had to be converted to a numeric variable type to perform math operations.
+
+
+4. Changing "United States" to "USA" is one change. But how many records in the data had to change?
+
+    26 entries needed to be updated from "United States" to "USA".
+
+5. With the second CSV file, re-running your program caused some problems. What broke, and why? Why does your program have to change in order to work properly?
+
+    The number of Amandas was incorrect and United States did not get changed to USA. This happened because the new column was added before
+    the Name and Country column, so their index within the row increased. So, increasing the index by one for the Name and Country would fix this
+    problem.
