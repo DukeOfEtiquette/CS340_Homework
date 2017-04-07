@@ -1,3 +1,18 @@
+'''
+
+Author: Adam DuQuette
+Creation: April 5, 2017
+
+Description:
+
+This program was written for Homework 1, CS340 - Intro To Databases, Spring 2017
+Oregon Status University - Cascades.
+
+This program takes a csv file as a parameter and performs set operations on it's
+data.
+
+'''
+
 import sys
 import csv
 
@@ -7,40 +22,40 @@ if len(sys.argv) != 2:
     sys.exit(1)
 
 # Store argument locally
-filePath = sys.argv[1]
+file_path = sys.argv[1]
 
 # Print success message with file name
-print "Success! File passed:", filePath
+print "Success! File passed:", file_path
 
 
 # Return a csv reader object based on file path provided
-def getCsvReader(csv_file):
+def get_csv_reader(csv_file):
     data_reader = csv.reader(csv_file)
     return data_reader
 
 
-def getKey(item):
+def get_key(item):
     return item[1]
 
 
 # Helper function to print every row in a csv reader object
 # This function and getKey heavily inspired by:
 # http://stackoverflow.com/questions/34472390/how-to-sort-data-alphabetically-in-a-csv-file-created-in-python
-def printCsvReader(csv_reader):
+def print_csv_reader(csv_reader):
     data = []
     # Move data into a list
     for row in csv_reader:
         data.append(row)
 
     # Sort list based on the Product column
-    data.sort(key=getKey)
+    data.sort(key=get_key)
 
     # Print each row of list
     for i in data:
         print i
 
 
-def numOfAmandas(csv_reader):
+def num_of_amandas(csv_reader):
     # Start counter
     nAmandas = 0
 
@@ -54,7 +69,7 @@ def numOfAmandas(csv_reader):
     return nAmandas
 
 
-def avgTransation(csv_reader):
+def avg_transaction(csv_reader):
     total = 0
     counter = 0
 
@@ -70,7 +85,7 @@ def avgTransation(csv_reader):
     return total/counter
 
 
-def replaceUnitedStates(csv_reader):
+def replace_united_states(csv_reader):
     # Make a copy of our reader
     copy_reader = csv_reader
 
@@ -96,27 +111,27 @@ def replaceUnitedStates(csv_reader):
 
 
 # Open the csv file and get a csv reader object
-file = open(filePath, 'rb')
-data_reader = getCsvReader(file)
+file = open(file_path, 'rb')
+data_reader = get_csv_reader(file)
 
 # STEP ONE: Read and Print the data
 print "Step 1: Read and Print the data"
-printCsvReader(data_reader)
+print_csv_reader(data_reader)
 file.seek(0)  # Seek back to start of file
 
 # STEP TWO: Number of Amandas
 print "Step 2: Number of Amandas"
-print "There are", numOfAmandas(data_reader), "Amandas in this dataset"
+print "There are", num_of_amandas(data_reader), "Amandas in this dataset"
 file.seek(0)  # Seek back to start of file
 
 # STEP THREE: Average Transaction Amount
 print "Setp 3: Average Transaction Amount"
-print "Avg:", avgTransation(data_reader)
+print "Avg:", avg_transaction(data_reader)
 file.seek(0)  # Seek back to start of file
 
 # STEP FOUR: USA! USA! USA!
 print "Step 4: USA! USA! USA!"
-print replaceUnitedStates(data_reader), "records changed to USA"
+print replace_united_states(data_reader), "records changed to USA"
 file.seek(0)  # Seek back to start of file
 
 file.close()  # Close it up
