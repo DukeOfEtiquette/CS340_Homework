@@ -1,0 +1,20 @@
+### Entities ###
+
+- Bike shop
+- Customer
+        - Credit card
+        - Name
+        - Address
+        - Phone
+        - Email
+- Bike
+        - rate
+        - type of bike (performance, rec, etc.)
+- Rental
+        - Bike
+        - expected return time
+        - checkout time
+        - actual return time
+- Available Inventory
+- Maintenance Inventory
+- Bike History
